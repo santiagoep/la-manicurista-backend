@@ -1,0 +1,101 @@
+{
+  "name": "la-manicurista-backend",
+  "version": "1.0.0",
+  "description": "La Manicurista backend service",
+  "main": "index.js",
+  "repository": "git+https://github.com/santiagoep/la-manicurista-backend.git",
+  "author": "santiagoep",
+  "license": "-",
+  "private": true,
+  "scripts": {
+    "s": "nodemon --inspect ./src",
+    "test": "node_modules/.bin/jest",
+    "test-with-coverage": "node_modules/.bin/jest --coverage=true",
+    "test-build": "yarn test && yarn lint && yarn prettier-lint && echo \"\\033[32mPassing build\\033[0m\"; exit 0 || echo \"\\033[31mFailing build\\033[0m\"; exit 1",
+    "tw": "node_modules/.bin/jest --watch",
+    "prettier-lint": "node_modules/.bin/prettier -l --write \"src/**/*.js\" && prettier -l --write \"tests/**/*.js\"",
+    "lint": "eslint \"src/**/*.js\" && eslint \"tests/**/*.js\""
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dayjs": "^1.10.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.4.1",
+    "express-winston": "^4.0.5",
+    "fs": "^0.0.1-security",
+    "graphql-request": "^1.8.2",
+    "http-status-codes": "^1.4.0",
+    "husky": "^4.2.5",
+    "jsonapi-serializer": "^3.6.6",
+    "lint-staged": "^10.2.11",
+    "node-fetch": "^2.6.0",
+    "path": "^0.12.7",
+    "polly-js": "^1.6.5",
+    "qs": "^6.9.4",
+    "request-ip": "^2.1.3",
+    "sequelize": "^5.21.13",
+    "swagger-jsdoc": "^4.0.0",
+    "swagger-ui-express": "^4.1.4",
+    "uuid": "^8.0.0",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "axios-mock-adapter": "^1.19.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jest": "^23.9.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.3",
+    "jest": "^26.0.1",
+    "nodemon": "^2.0.3",
+    "prettier": "^2.0.5",
+    "supertest": "^4.0.2"
+  },
+  "jest": {
+    "verbose": true,
+    "testRegex": "tests/.*\\.(test|spec)\\.(ts|tsx|js)$",
+    "transformIgnorePatterns": [
+      "node_modules/"
+    ],
+    "setupFiles": [
+      "./jest/setup.js"
+    ],
+    "coverageReporters": [
+      "lcov"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/index.js"
+    ],
+    "testURL": "http://localhost/"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.js": [
+      "yarn prettier-lint --write",
+      "yarn lint",
+      "yarn test --findRelatedTests",
+      "git add ."
+    ]
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "tests/**/*",
+      "node_modules/**/*"
+    ]
+  }
+}
