@@ -8,8 +8,8 @@
   "license": "-",
   "private": true,
   "scripts": {
-    "s": "nodemon --inspect ./src",
-    "start": "node ./src",
+    "s": "nodemon --inspect ./src/index.js",
+    "start": "node ./src/index.js",
     "test": "node_modules/.bin/jest",
     "test-with-coverage": "node_modules/.bin/jest --coverage=true",
     "test-build": "yarn test && yarn lint && yarn prettier-lint && echo \"\\033[32mPassing build\\033[0m\"; exit 0 || echo \"\\033[31mFailing build\\033[0m\"; exit 1",

@@ -20,4 +20,4 @@ const startApp = async () => {
   });
 };
 
-startApp();
+startApp().then();
