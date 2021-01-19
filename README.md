@@ -28,6 +28,10 @@ I am using these stack technologies in the core app:
 1. yarn install
 2. yarn s
 
+## Tests
+
+yarn test
+
 ## API Docs
 
 1. Browser: http://127.0.0.1:8080/api-docs
